@@ -25,6 +25,14 @@ module.exports = (serviceService, config) => {
             .catch((err) => res.error(err));
     });
 
+    router.post('/add', (req, res) => {
+        res.header('Content-Type', 'application/json');
+        serviceService.add(req.body)
+            .then((userId) => {
+                res.send({success: true});
+            })
+            .catch((err) => res.error(err));
+    });
 
     return router;
 }

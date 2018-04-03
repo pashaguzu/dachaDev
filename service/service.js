@@ -8,7 +8,23 @@ const config = require('../tsconfig');
 
 module.exports = (serviceRepository,errors) => {
 
-    return {getServices: getServices,getTitle:getTitle};
+    return {add:add,getServices: getServices,getTitle:getTitle};
+
+    function add(data) {
+        return new Promise((resolve, reject) => {
+                    var item =
+                    {
+                        title: data.title,
+                        describe: data.describe,
+                        photo: data.photo
+                    };
+                    Promise.all([serviceRepository.create(item)])
+                        .then(() => resolve({success: true}))
+                        .catch(reject);
+
+        })
+    }
+
 
     function getServices(data)
     {
