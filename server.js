@@ -18,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+const port = process.env.PORT || 3000;
 app.get('/', (req, res) => {
     res.send('Hello New World!');
 });
@@ -27,6 +28,6 @@ dbcontext.sequelize
     .sync()
     .then(() =>
     {
-        app.listen(3000, () => console.log('---server is running---'));
+        app.listen(port, () => console.log('---server is running---'));
     })
     .catch((err) => console.log(err));
