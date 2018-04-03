@@ -1,12 +1,32 @@
-const express = require('express');
+/**
+ * Created by Pavel on 01.07.2017.
+ */
+const express =  require("express");
+const bodyParser = require('body-parser');
+const Sequelize = require('sequelize');
+const Mustache = require('mustache');
+const config = require('./tsconfig');
+const dbcontext = require('./context/db')(Sequelize,config);
+
+const serviceService = require('./service/service')(dbcontext.service);
+const orderService = require('./service/order')(dbcontext.basket);
+const apiController = require('./controllers/api')(serviceService,orderService,config);
+const logger = require('./utils/logger');
 const app = express();
 
-const port = process.env.PORT || 3000;
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.get('/', (req, res) => {
     res.send('Hello New World!');
 });
-
-app.listen(port, function () {
-    console.log(`Server running on ${port}`);
-});
+app.use('/api',logger);
+app.use('/api',apiController);
+dbcontext.sequelize
+    .sync()
+    .then(() =>
+    {
+        app.listen(3000, () => console.log('---server is running---'));
+    })
+    .catch((err) => console.log(err));
