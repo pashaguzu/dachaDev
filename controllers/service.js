@@ -14,7 +14,7 @@ module.exports = (serviceService, config) => {
             .then((data) => {
                 res.header('Access-Control-Allow-Origin', '*');
                 res.header('Content-Type', 'application/json');
-                res.send(data);
+                res.send({services:data});
             })
             .catch((err) => res.error(err));
     });
