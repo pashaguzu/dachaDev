@@ -1,0 +1,22 @@
+{
+  "db": {
+  "dialect":"mysql",
+  "type":"mysql",
+  "host": "127.0.0.1",
+  "name": "assistant",
+  "user": "root",
+  "password": ""
+},
+  "cookie": {
+    "key": "gps2017",
+    "auth": "x-access-token"
+  },
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
