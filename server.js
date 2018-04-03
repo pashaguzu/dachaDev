@@ -5,17 +5,15 @@ const express =  require("express");
 const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const Mustache = require('mustache');
-const cookieParser = require('cookie-parser');
 const config = require('./tsconfig');
 const dbcontext = require('./context/db')(Sequelize,config);
 
-const userService = require('./service/user')(dbcontext.user);
 const serviceService = require('./service/service')(dbcontext.service);
 const orderService = require('./service/order')(dbcontext.basket);
-const apiController = require('./controllers/api')(userService,serviceService,orderService,config);
+const apiController = require('./controllers/api')(serviceService,orderService,config);
 const logger = require('./utils/logger');
 const app = express();
-app.use(cookieParser(config.cookie.key));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true

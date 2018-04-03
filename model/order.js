@@ -8,15 +8,8 @@ module.exports = (Sequelize,sequelize)=>{
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: Sequelize.INTEGER,
-        service_id:Sequelize.INTEGER,
-        date:{
-            type: Sequelize.DATEONLY
-        },
-        time: Sequelize.TIME,
-        address:Sequelize.STRING,
-        phone:Sequelize.STRING,
-        status:Sequelize.BOOLEAN
+        name: Sequelize.STRING,
+        phone:Sequelize.STRING
 
     })
 }
