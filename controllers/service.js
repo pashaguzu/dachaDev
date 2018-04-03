@@ -10,6 +10,7 @@ module.exports = (serviceService, config) => {
     //getService
     router.get('/get', (req, res) => {
         res.header('Access-Control-Allow-Origin', '*');
+        res.header('Content-Type', 'application/json');
         serviceService.getServices()
             .then((data) => {
                 res.send(data);
