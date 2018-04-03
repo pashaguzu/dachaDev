@@ -9,9 +9,9 @@ module.exports = (serviceService, config) => {
 
     //getService
     router.get('/get', (req, res) => {
+        res.header('Access-Control-Allow-Origin', '*');
         serviceService.getServices()
             .then((data) => {
-                res.header("Access-Control-Allow-Origin: *")
                 res.send(data);
             })
             .catch((err) => res.error(err));
@@ -24,6 +24,7 @@ module.exports = (serviceService, config) => {
             })
             .catch((err) => res.error(err));
     });
+
 
     return router;
 }
