@@ -11,7 +11,7 @@ module.exports = (serviceService, config) => {
     router.get('/get', (req, res) => {
         serviceService.getServices()
             .then((data) => {
-
+                res.header("Access-Control-Allow-Origin: *")
                 res.send(data);
             })
             .catch((err) => res.error(err));
