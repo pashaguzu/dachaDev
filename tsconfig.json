@@ -1,11 +1,10 @@
 {
   "db": {
-  "dialect":"mysql",
-  "type":"mysql",
-  "host": "127.0.0.1",
-  "name": "assistant",
-  "user": "root",
-  "password": ""
+  "host": "ec2-54-247-111-19.eu-west-1.compute.amazonaws.com",
+  "name": "d2uegsr9btbdun",
+  "user": "ghfavvusfoyhlv",
+  "password": "9b480b82f5d27a01005c13da69ec69665551880de00c35bdf33998a30ea929c3",
+  "dialect":"postgres"
 },
   "cookie": {
     "key": "gps2017",

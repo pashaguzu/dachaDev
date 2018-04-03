@@ -1,6 +1,7 @@
 /**
  * Created by Pavel on 24.08.2017.
  */
+const  pg = require('pg');
 module.exports = (Sequelize, config) => {
     const options = {
         host: config.db.host,
@@ -16,15 +17,13 @@ module.exports = (Sequelize, config) => {
             }
         }
     };
+    pg.defaults.ssl = true;
     const sequelize = new Sequelize(config.db.name, config.db.user, config.db.password, options);
-    const User = require('../model/user')(Sequelize, sequelize);
     const Service = require('../model/service')(Sequelize, sequelize);
     const Basket = require('../model/order')(Sequelize, sequelize);
-    User.hasOne(Basket,{foreignKey: 'user_id'});
     Service.hasOne(Basket,{foreignKey: 'service_id'});
     return {
         sequelize: sequelize,
-        user:User,
         service:Service,
         basket:Basket
     };

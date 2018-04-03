@@ -24,6 +24,6 @@ dbcontext.sequelize
     .sync()
     .then(() =>
     {
-        app.listen(3000, () => console.log('---server is running---'));
+        app.listen(5432, () => console.log('---server is running---'));
     })
     .catch((err) => console.log(err));
