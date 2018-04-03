@@ -12,9 +12,9 @@ module.exports = (serviceService, config) => {
 
         serviceService.getServices()
             .then((data) => {
-                res.header('Access-Control-Allow-Origin', '*');
-                res.header('Content-Type', 'application/json');
-                res.send({services:data});
+                res.setHeader('Access-Control-Allow-Origin', '*');
+                res.setHeader('Content-Type', 'application/json');
+                res.send(data);
             })
             .catch((err) => res.error(err));
     });
