@@ -8,7 +8,7 @@ const config = require('../tsconfig');
 
 module.exports = (serviceRepository,errors) => {
 
-    return {add:add,getServices: getServices,getTitle:getTitle};
+    return {add:add,destroy:destroy,getServices: getServices};
 
     function add(data) {
         return new Promise((resolve, reject) => {
@@ -24,6 +24,7 @@ module.exports = (serviceRepository,errors) => {
 
         })
     }
+
 
 
     function getServices(data)
@@ -45,14 +46,14 @@ module.exports = (serviceRepository,errors) => {
         })
     }
 
-    function getTitle(id)
+    function destroy(id)
     {
         return new Promise((resolve, reject) => {
 
             serviceRepository
-                    .findOne({where: {id: id}, attributes: ['title']})
-                    .then((title) => {
-                        resolve(title);
+                    .destroy({where: {id: id}})
+                    .then(() => {
+                        resolve({success: true});
                     })
                     .catch(reject);
         })

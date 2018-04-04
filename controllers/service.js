@@ -19,10 +19,11 @@ module.exports = (serviceService, config) => {
             .catch((err) => res.error(err));
     });
 
-    router.get('/title/:id', (req, res) => {
-        serviceService.getTitle(req.params.id)
-            .then((title) => {
-                res.send(title);
+    router.post('/destroy', (req, res) => {
+        res.header('Content-Type', 'application/json');
+        serviceService.destroy(req.body.id)
+            .then((data) => {
+                res.send(data);
             })
             .catch((err) => res.error(err));
     });
