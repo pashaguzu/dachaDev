@@ -9,7 +9,7 @@ const config = require('../tsconfig');
 
 module.exports = (orderRepository,errors) => {
 
-    return {add: add, getOrderByID: getOrderByID}
+    return {add: add, getAll: getAll}
     function add(data) {
         return new Promise((resolve, reject) => {
                     var item =
@@ -23,19 +23,14 @@ module.exports = (orderRepository,errors) => {
         })
     }
 
-    function getOrderByID(tokenUserId) {
+    function getAll() {
         return new Promise((resolve, reject)=> {
-            if (tokenUserId) {
-                jwt.verify(tokenUserId, config.cookie.key, function (err, decoded) {
-                    if (err != null) reject(errors.Unauthorized);
-                    var userId = decoded.__user_id;
-                    orderRepository.findAll({where: {user_id: userId}})
+
+                    orderRepository.findAll()
                         .then((data)=> {
                             resolve(data);
                         })
                         .catch(reject);
-                })
-            }
         })
 
     }

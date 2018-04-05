@@ -20,7 +20,7 @@ module.exports = (orderService, config) => {
 
 router.get('/get',(req,res)=>{
 
-    orderService.getOrderByID()
+    orderService.getAll()
         .then((data)=>{
             res.send(data);
         })
