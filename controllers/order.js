@@ -11,15 +11,16 @@ module.exports = (orderService, config) => {
     //add
     router.post('/add', (req, res) => {
         res.header('Content-Type', 'application/json');
-        orderService.add(req.body,req.cookies['x-access-token'])
-            .then((userId) => {
+        orderService.add(req.body)
+            .then(() => {
                 res.send({success: true});
             })
             .catch((err) => res.error(err));
     });
+
 router.get('/get',(req,res)=>{
 
-    orderService.getOrderByID(req.cookies['x-access-token'])
+    orderService.getOrderByID()
         .then((data)=>{
             res.send(data);
         })
