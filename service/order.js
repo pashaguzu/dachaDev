@@ -9,7 +9,7 @@ const config = require('../tsconfig');
 
 module.exports = (orderRepository,errors) => {
 
-    return {add: add, getAll: getAll}
+    return {add: add, getAll: getAll,destroy:destroy}
     function add(data) {
         return new Promise((resolve, reject) => {
                     var item =
@@ -34,5 +34,16 @@ module.exports = (orderRepository,errors) => {
         })
 
     }
+    function destroy(id)
+    {
+        return new Promise((resolve, reject) => {
 
+            orderRepository
+                .destroy({where: {id: id}})
+                .then(() => {
+                    resolve({success: true});
+                })
+                .catch(reject);
+        })
+    }
 }

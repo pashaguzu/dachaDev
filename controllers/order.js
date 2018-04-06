@@ -26,7 +26,14 @@ router.get('/get',(req,res)=>{
         .catch((err)=> res.error(err));
 })
 
-
+    router.post('/destroy', (req, res) => {
+        res.header('Content-Type', 'application/json');
+        orderService.destroy(req.body.id)
+            .then((data) => {
+                res.send(data);
+            })
+            .catch((err) => res.error(err));
+    });
 
   return router;
 }
