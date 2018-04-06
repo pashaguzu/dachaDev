@@ -19,13 +19,13 @@ module.exports = (orderService, config) => {
     });
 
 router.get('/get',(req,res)=>{
-
     orderService.getAll()
         .then((data)=>{
             res.send(data);
         })
         .catch((err)=> res.error(err));
 })
+
 
 
   return router;

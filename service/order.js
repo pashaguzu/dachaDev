@@ -26,7 +26,7 @@ module.exports = (orderRepository,errors) => {
     function getAll() {
         return new Promise((resolve, reject)=> {
 
-                    orderRepository.findAll()
+                    orderRepository.findAndCountAll()
                         .then((data)=> {
                             resolve(data);
                         })
@@ -34,4 +34,5 @@ module.exports = (orderRepository,errors) => {
         })
 
     }
+
 }
