@@ -28,7 +28,7 @@ router.get('/get',(req,res)=>{
 
     router.post('/destroy', (req, res) => {
         res.header('Content-Type', 'application/json');
-        console.log(req.body.id,req);
+        console.log(req.body);
         orderService.destroy(req.body.id)
             .then((data) => {
                 res.send(data);
